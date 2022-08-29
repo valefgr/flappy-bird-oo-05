@@ -147,5 +147,5 @@ Agrega los siguientes métodos dentro de `script.js`. Las descripciones para los
 - **¿Dónde se utiliza?**: `juego.iniciar()` llama a `obstaculos.crear()`
 
 2. `dibujar()`
-- **¿Qué hace?**: `obstaculos.dibujar()` dibuja a los obstaculos creados
+- **¿Qué hace?**: `obstaculos.dibujar()` dibuja a los obstaculos dentro de `obstaculos.lista`
 - **¿Dónde se utiliza?**: `juego.loop()` llama a `obstaculos.dibujar()` para dibujar a los obstaculos en el DOM

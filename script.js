@@ -1,6 +1,3 @@
-
-// SCRIPT #5: just creates the obstacle and then draws it in a specific place
-
 const juego = {
     timerId: 0,
     gravedad: 2,

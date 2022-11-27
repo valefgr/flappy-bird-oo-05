@@ -26,7 +26,7 @@ const juego = {
     iniciar: function () {
       document.addEventListener("keyup", bird.mover);
       // 10. Llama a obstaculos.crear()
-      
+      obstaculos.crear()
       juego.timerId = setInterval(juego.loop, 20);
       
     },
@@ -85,7 +85,7 @@ const juego = {
   
   const obstaculos = {
     // 2. Agrega obstacleContainer
-    
+    obstacleContainer: document.querySelector(".obstacles"),
 
     // 3. Agrega gap
     gap: 200,
@@ -105,12 +105,52 @@ const juego = {
     // 8. Agrega crear()
     crear: function () {
      // Agregar código
+     const topObstacle = document.createElement("div")
+     const bottomObstacle = document.createElement("div")
+     bottomObstacle.classList.add("bottomObstacle")
+     topObstacle.classList.add("topObstacle")
+     obstaculos.obstacleContainer.appendChild(topObstacle)
+     obstaculos.obstacleContainer.appendChild(bottomObstacle)
+
+     topObstacleHeight = Math.max(
+      math.random() * obstaculos.maxHeight,
+      obstaculos.minHeight
+     );
+     bottomObstacleHeight = Math.min(
+      juego.skyHeight - topObstacle - obstaculos.gap, 
+      obstaculos.maxHeight
+     );
+     const parObstaculos = {
+      topObstacle: topObstacle,
+      bottomObstacle: bottomObstacle,
+      //updated
+      left:500,
+      width: obstaculos.width,
+      topObstacleHeight: topObstacleHeight,
+      bottomObstacleHeight: bottomObstacleHeight,
+      topObstacleBottom: juego.skyHeight - topObstacleHeight,
+      bottomObstacleBottom: 0,
+     };
+     
+     obstaculos.lista.push(parObstaculos);
+     console.log(obstaculos.lista)
     },
   
 
     // 9. Agrega dibujar()
     dibujar: function () {
        // Agregar codigo
+       for (var i = 0; i < obstaculos.lista.length; i++) {
+        obstaculos.lista[i].topObstacle.style.left =
+        obstaculos.lista[i].left + "px";
+        obstaculos.lista[i].bottomObstacle.style.left =
+        obstaculos.lista[i].left + "px";
+
+        obstaculos.lista[i].topObstacle.style.height =
+        obstaculos.lista[i].topObstacleHeight + "px";
+        obstaculos.lista[i].bottomObstacle.style.height =
+        obstaculos.lista[i].bottomObstacleHeight + "px";
+       }
     },
   };
   
